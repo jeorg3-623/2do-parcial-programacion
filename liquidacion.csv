@@ -1,0 +1,8 @@
+patente,tipo,dias,hora_entrada,hora_salida,minutos,lavado,base,bonificacion,monto_lavado,total_cobrado
+ABC123,auto,0,09:00,09:20,20,N,800,0,0,800
+AA123BB,moto,0,10:00,11:35,95,N,2000,0,0,2000
+XYZ987,camioneta,0,08:00,10:15,135,N,6300,0,0,6300
+DEF456,auto,0,08:00,09:30,90,S,2400,2400,6000,6000
+GH789IJ,auto,0,07:00,12:10,310,S,8800,3200,6000,11600
+KLM321,camioneta,3,,,0,S,36000,0,8000,44000
+NOP654,moto,2,,,0,N,10000,0,0,10000

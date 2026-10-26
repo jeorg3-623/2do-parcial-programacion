@@ -1,0 +1,13 @@
+[
+  {"patente": "abc 123", "tipo": "auto", "dias": 0, "hora_entrada": "09:00", "hora_salida": "09:20", "lavado": false},
+  {"patente": "AA123BB", "tipo": "moto", "dias": 0, "hora_entrada": "10:00", "hora_salida": "11:35", "lavado": false},
+  {"patente": "XYZ987", "tipo": "camioneta", "dias": 0, "hora_entrada": "08:00", "hora_salida": "10:15", "lavado": false},
+  {"patente": "DEF456", "tipo": "auto", "dias": 0, "hora_entrada": "08:00", "hora_salida": "09:30", "lavado": true},
+  {"patente": "GH789IJ", "tipo": "auto", "dias": 0, "hora_entrada": "07:00", "hora_salida": "12:10", "lavado": true},
+  {"patente": "KLM321", "tipo": "camioneta", "dias": 3, "lavado": true},
+  {"patente": "NOP654", "tipo": "moto", "dias": 2, "lavado": false},
+  {"patente": "AB12CD", "tipo": "auto", "dias": 0, "hora_entrada": "10:00", "hora_salida": "11:00", "lavado": false},
+  {"patente": "QRS111", "tipo": "bicicleta", "dias": 0, "hora_entrada": "10:00", "hora_salida": "11:00", "lavado": false},
+  {"patente": "TUV222", "tipo": "auto", "dias": 0, "hora_entrada": "15:00", "hora_salida": "14:00", "lavado": false},
+  {"patente": "WXY333", "tipo": "auto", "dias": 0, "hora_entrada": "25:00", "hora_salida": "26:00", "lavado": false}
+]

@@ -1,0 +1,5 @@
+indice,patente,motivo
+8,AB12CD,Patente inválida: use ABC123 o AA123BB
+9,QRS111,"Tipo de vehículo inválido: use auto, moto, camioneta"
+10,TUV222,La hora de salida debe ser posterior a la de entrada
+11,WXY333,Horario inválido o faltante: use el formato HH:MM
