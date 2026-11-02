@@ -7,7 +7,7 @@ import config
 import persistencia as db
 import tarifas
 import validaciones as val
-from models import Liquidacion, Movimiento, Rechazo
+from models import Estadia, HistorialPatente, Liquidacion, Movimiento, Rechazo
 from validaciones import ErrorValidacion
 
 
@@ -67,3 +67,21 @@ def procesar_lote() -> ResumenLote:
     db.escribir_csv(config.ARCHIVO_RECHAZADOS, db.CAMPOS_RECHAZOS,
                     [db.rechazo_a_fila(r) for r in resumen.rechazos])
     return resumen
+
+
+def consultar_historial(patente: str) -> HistorialPatente:
+    """Consolida todas las estadías de una patente en los CSV de cobro manual y lote."""
+    fuentes = (("Manual", config.ARCHIVO_MANUAL), ("Lote", config.ARCHIVO_LOTE))
+    estadias: list[Estadia] = []
+
+    for origen, ruta in fuentes:
+        for fila in db.leer_csv(ruta):
+            if fila.get("patente") != patente:
+                continue
+            try:
+                estadias.append(Estadia(origen, fila["tipo"], int(fila["dias"]),
+                                        int(fila["minutos"]), int(fila["total_cobrado"])))
+            except (KeyError, ValueError):
+                continue   # fila dañada o editada a mano: se ignora
+
+    return HistorialPatente(patente, tuple(estadias))

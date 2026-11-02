@@ -25,6 +25,14 @@ def leer_movimientos(ruta: Path) -> list:
     return datos
 
 
+def leer_csv(ruta: Path) -> list[dict]:
+    """Lee un CSV como lista de diccionarios. Si no existe, devuelve lista vacía."""
+    if not ruta.exists():
+        return []
+    with open(ruta, "r", newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
 def a_fila(mov: Movimiento, liq: Liquidacion) -> dict:
     return {
         "patente": mov.patente, "tipo": mov.tipo, "dias": mov.dias,

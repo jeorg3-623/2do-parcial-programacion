@@ -99,16 +99,43 @@ def procesar_lote() -> None:
     ui.pausa()
 
 
+def consultar_historial() -> None:
+    pantalla("Historial por patente")
+    patente = ui.pedir("Patente a consultar", val.parse_patente)
+    h = servicios.consultar_historial(patente)
+
+    print()
+    if h.ingresos == 0:
+        ui.info(f"No hay ingresos registrados para {patente}.")
+        ui.info("Los datos salen de liquidacion-manual.csv y liquidacion.csv.")
+        return ui.pausa()
+
+    promedio = f"{h.promedio_minutos:,.1f} min".replace(",", "X").replace(".", ",").replace("X", ".")
+    ui.tabla(["Patente", "Ingresos", "Total abonado", "Promedio por estadía"],
+             [[h.patente, h.ingresos, ui.dinero(h.total_abonado), promedio]],
+             alineacion="<^>>")
+
+    ui.seccion("Detalle de estadías")
+    ui.tabla(["#", "Origen", "Tipo", "Tiempo", "Total"],
+             [[i, e.origen, e.tipo,
+               f"{e.minutos} min" if e.dias == 0 else f"{e.dias} d",
+               ui.dinero(e.total)]
+              for i, e in enumerate(h.estadias, start=1)],
+             alineacion="><<>>")
+    ui.pausa()
+
+
 def main() -> None:
-    acciones = {"1": cobro_manual, "2": procesar_lote}
+    acciones = {"1": cobro_manual, "2": procesar_lote, "3": consultar_historial}
     while True:
         ui.limpiar()
         ui.banner("AUTOPARK", SUBTITULO)
         ui.menu([("1", "Registrar / Consultar cobro manual"),
                  ("2", "Procesar lote de movimientos (JSON → CSV)"),
-                 ("3", "Salir")])
+                 ("3", "Consultar historial por patente"),
+                 ("4", "Salir")])
         opcion = input("  Seleccione una opción: ").strip()
-        if opcion == "3":
+        if opcion == "4":
             ui.info("Hasta luego.")
             return
         accion = acciones.get(opcion)

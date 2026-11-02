@@ -27,6 +27,7 @@ TARIFAS: dict[str, Tarifa] = {
 LIMITE_BLOQUES_30 = 120
 BLOQUE_INICIAL = 30
 BLOQUE_EXTRA = 60
+MINUTOS_POR_DIA = 24 * 60
 
 # Archivos
 ARCHIVO_MOVIMIENTOS = BASE_DIR / "movimientos.json"
